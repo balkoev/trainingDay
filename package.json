@@ -33,6 +33,8 @@
     "nodemon": "^1.18.5"
   },
   "nodemonConfig": {
-    "ignore": ["sessions/*"]
+    "ignore": [
+      "sessions/*"
+    ]
   }
 }
