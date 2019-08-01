@@ -1,0 +1,14 @@
+{{#if input}}
+<div id= "nameOfBox">
+{{input.title}}
+</div>
+<div id= "quastion">
+</div>
+<input   class= "addButton" value= "add question" type= "submit">
+<input  id= "save" value= "save" type= "submit">
+{{else}}
+<div>
+    <input id= "boxName" type="text">
+</div>
+<input class= "addButton" value= "add question" type= "submit">
+{{/if}}
