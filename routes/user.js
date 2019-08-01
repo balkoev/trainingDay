@@ -2,16 +2,14 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 const User = require("../modules/users");
-const CardBox = require("./modules/cardBox");
-const Card = require("./modules/cards");
-const Quastion = require("./modules/quastions");
-const QuastionBox = require("./modules/quastionBox")
+const CardBox = require("../modules/cardBox");
+const Card = require("../modules/cards");
+const Quastion = require("../modules/quastions");
+const QuastionBox = require("../modules/quastionBox")
 
 
 
 router.get('/', async (req, res, next) => {
-  let users = await User.find();
-  console.log(users);
   res.render('user/indexUser');
 })
 router.get("/test/final", function(req, res, next){
