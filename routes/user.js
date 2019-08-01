@@ -12,6 +12,7 @@ router.get('/', async (req, res, next) => {
   res.render('user/indexUser');
 })
 router.get("/test/final", function(req, res, next){
+  
   res.render("user/testFinal")
 })
 
