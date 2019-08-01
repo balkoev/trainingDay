@@ -17,6 +17,7 @@ const hbs = handlebars.create({
 
 router.get('/', (req, res, next) => {
   res.render('admin/indexAdmin');
+
 })
 
 router.get('/list', function (req, res, next) {

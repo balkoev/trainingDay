@@ -8,7 +8,6 @@ const Quastion = require("../modules/quastions");
 const QuastionBox = require("../modules/quastionBox")
 
 
-
 router.get('/', async (req, res, next) => {
   res.render('user/indexUser');
 })
