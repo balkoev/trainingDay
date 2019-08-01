@@ -1,3 +1,6 @@
 <div>
-    Добро пожаловать в итоговое тестирование
+   {{#each test}}
+   <a href="../test/final/{{this.title}}"> {{this.title}}</a>
+   </br>
+   {{/each}}
 </div>

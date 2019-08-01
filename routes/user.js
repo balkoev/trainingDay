@@ -11,9 +11,19 @@ const QuastionBox = require("../modules/quastionBox")
 router.get('/', async (req, res, next) => {
   res.render('user/indexUser');
 })
-router.get("/test/final", function(req, res, next){
-  
-  res.render("user/testFinal")
+
+const find = async function(req, res, next){
+
+  let user = await User.findOne({telephone:req.session.mobile}, {_id: 0, position:1})
+  let test = await QuastionBox.find({position: user.position})
+  console.log(test)
+  req.test = test
+  next()
+}
+router.get("/test/final", find, function(req, res, next){
+  res.render("user/testFinal", {
+    test: req.test
+  })
 })
 
 router.get("/cards", function(req, res, next){
@@ -23,6 +33,14 @@ router.get("/cards", function(req, res, next){
 router.get("/test/train", function(req, res, next){
   res.render("user/testTrain")
 })
-
+ router.get("/test/final/:name", async function(req, res){
+   let quastionBox = await QuastionBox.findOne({title:req.params.name})
+   let quastions = await Quastion.find({quastionBox:quastionBox.title})
+   console.log(quastions)
+   res.render("user/testStart", {
+     name: req.params.name,
+     length: quastions.length
+   })
+  })
 
 module.exports = router;

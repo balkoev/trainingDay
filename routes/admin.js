@@ -76,7 +76,7 @@ const findOrCreate = async function(req, res, next){
     next()
   } 
   else{
-    newTest = new QuastionBox({title : req.body.input})
+    newTest = new QuastionBox({title : req.body.input, position: req.body.input2})
     await newTest.save()
     req.test = newTest
     next()
