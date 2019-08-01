@@ -38,13 +38,32 @@ document.addEventListener("click", async function (ev) {
 
 
     }
-    if(ev.target.id == "save"){
+    if (ev.target.id == "save") {
         let quArr = Array.from(document.getElementsByClassName("qu"))
         let ansArr = Array.from(document.getElementsByClassName("ans"))
         let caArr = Array.from(document.getElementsByClassName("ca"))
-        quArr.forEach(async (el, i) =>{
+        let bo = document.getElementById("nameOfBox").innerText
+        quArr.forEach(async (el, i) => {
             console.log(el.value, ansArr[i].value)
+            let forms = {
+                qu: el.value,
+                ans: ansArr[i].value.split(", "),
+                ca: caArr[i].value,
+                box: bo
+            }
+            const resp = await fetch("/admin/question", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(forms)
+            })
+            location = "/admin/test"
+            Window.location.reload(true)
+
         })
+
     }
 })
 

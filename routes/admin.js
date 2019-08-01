@@ -87,4 +87,17 @@ router.post("/newtest",findOrCreate, function(req, res){
     input: req.test
   })
 })
+
+const create = async function(req, res, next){ 
+  console.log(req.body.qu)
+  let newQ = new Quastion({title: req.body.qu, answer: req.body.ans, card: req.body.ca, quastionBox: req.body.box })
+  console.log(newQ);
+  await newQ.save()
+  next()
+}
+
+router.post("/question", create, function(req, res){
+  res.end()
+  
+} )
 module.exports = router;
