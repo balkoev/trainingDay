@@ -1,5 +1,7 @@
-const accountSid = 'ACbc961f6d80ec2824aaa1c9b91d14bd8b'; // Your Account SID from www.twilio.com/console
-const authToken = '7c08bc703ab7724f6e7b338b92681013';   // Your Auth Token from www.twilio.com/console
+require('dotenv').config();
+
+const accountSid = process.env.ACCOUNT_SID; // Your Account SID from www.twilio.com/console
+const authToken = process.env.AUTH_SMS_TOKEN;   // Your Auth Token from www.twilio.com/console
 
 const twilio = require('twilio');
 const client = new twilio(accountSid, authToken);
