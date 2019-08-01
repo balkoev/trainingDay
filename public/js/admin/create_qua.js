@@ -39,11 +39,12 @@ document.addEventListener("click", async function (ev) {
 
     }
     if(ev.target.id == "save"){
-        let quArr = document.getElementsByClassName("qu")
-        let ansArr = document.getElementsByClassName("ans")
-        let wrArr = document.getElementsByClassName("wr")
-        let caArr = document.getElementsByClassName("ca")
-        console.log(quArr, ansArr, wrArr, caArr)
+        let quArr = Array.from(document.getElementsByClassName("qu"))
+        let ansArr = Array.from(document.getElementsByClassName("ans"))
+        let caArr = Array.from(document.getElementsByClassName("ca"))
+        quArr.forEach(async (el, i) =>{
+            console.log(el.value, ansArr[i].value)
+        })
     }
 })
 
