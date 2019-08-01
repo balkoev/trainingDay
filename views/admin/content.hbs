@@ -1,1 +1,14 @@
-Управление контентом
+<div id="content">
+  <h1>Управление контентом</h1>
+
+  <div id="cards">
+    {{>admin/cardList}}
+  </div>
+
+  <div id="form">
+    <form class="flex flex-column" method="POST" action="/content/new">
+      <button type="submit" class="button dark">Create cardbox</button>
+    </form>
+  </div>
+</div>
+
