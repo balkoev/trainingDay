@@ -1,0 +1,11 @@
+{{#if tests}}
+{{#each tests}}
+<form >
+    {{this.title}}
+    <input value="Show" type="submit">
+    <input value="Edit" type="submit">
+    <input value="Delete" type="submit">
+</form>
+{{/each}}
+{{/if}}
+ <input id = "createNew" value="Create new" type="submit">

@@ -41,7 +41,7 @@ app.use(session(sessionConfig))
 
 
 // Подключаем mongoose.
-mongoose.connect('mongodb://localhost:27017/trainingDay', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/supersprint', { useNewUrlParser: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

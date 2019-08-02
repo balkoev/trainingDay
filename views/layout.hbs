@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="//cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.runtime.min.js"></script>
 
-  </head>
-  <body>
-    {{{body}}}
-    <script src="js/script.js"></script>
-  </body>
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="//cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.runtime.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <div class="nav-wrapper deep-orange darken-3">
+        <a href="/" class="brand-logo center">T-Personal</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/#">Team</a></li>
+          {{#if verify}}
+          <li><a href="/logout">Logout</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+  </div>
+  {{{body}}}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+
 </html>
