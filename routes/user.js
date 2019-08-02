@@ -34,7 +34,6 @@ const find = async function(req, res, next){
   next()
 }
 
-
 const findBase = async function(req,res,next){
   let base = await CardBox.find()
   req.base = base
@@ -46,7 +45,6 @@ router.get("/test/final", find, function(req, res, next){
     test: req.test
   })
 })
-
 
 router.get("/cards",findBase, function(req, res, next){
   console.log(req.base)

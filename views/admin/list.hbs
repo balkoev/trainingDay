@@ -1,9 +1,15 @@
-<h1>VkusVill / Education</h1>
-
-<h3>Список сотрудников</h3>
-<div id="div">
-  {{>admin/listTemp}}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h3 class="center">Список сотрудников</h3>
+        </div>
+        <div id="div" class="col s12">
+            {{>admin/listTemp}}
+        </div>
+        </div>
+    </div>
 </div>
+
 {{!-- <script>
   const userCode = {{{ userTemp }}};
   const userHBS = Handlebars.template(userCode)
