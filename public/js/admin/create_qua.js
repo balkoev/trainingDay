@@ -5,9 +5,11 @@ document.addEventListener("click", async function (ev) {
 
 
         let boxName = document.getElementById("boxName")
+        let positionName = document.getElementById("positionName")
         if (boxName) {
             data = {
-                input: boxName.value
+                input: boxName.value,
+                input2: positionName.value
             }
         }
         else {

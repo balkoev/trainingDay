@@ -1,16 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const SmsSender = require('../auth');
+const User = require("../modules/users");
 
 router.get('/', (req, res, next) => {
   res.redirect('/auth');
 })
 
-router.get('/auth', (req, res, next) => {
-  //console.log(req.session)
-  if (req.session.verify) {
+router.get('/auth', async (req, res, next) => {
+  let user = await User.findOne({tel: req.session.mobile})
+  console.log(user)
+  if (req.session.verify && user.position != "Admin" && user.position) {
     res.redirect('/user')
-  } else {
+  } else if(req.session.verify && user.position == "Admin"){
+    res.redirect('/admin')
+  }
+  else
+   {
   res.render('index', { verify: req.session.verify});
   }
 })
