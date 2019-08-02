@@ -8,12 +8,42 @@ const QuastionBox = require("../modules/quastionBox")
 const handlebars = require('express-handlebars');
 const path = require('path');
 
-const hbs = handlebars.create({
-  defaultLayout: 'layout',
-  extname: 'hbs',
-  layoutsDir: path.join(__dirname, 'views'),
-  partialsDir: path.join(__dirname, 'views')
-})
+
+
+const hbs = handlebars.create( {
+	defaultLayout: 'layout',
+    extname: 'hbs',
+    layoutsDir: path.join(__dirname, 'views'),
+    partialsDir: path.join(__dirname, 'views')
+});
+
+// const userProfile = async function (req, res, next) {
+// 	const template = await hbs.getTemplate( "views/admin/userProfile.hbs", {
+//         precompiled: true
+//     });
+//     req.userTemp = template;
+// 	next();
+// }
+const listTemp = async function (req, res, next) {
+	const template = await hbs.getTemplate( "views/admin/listTemp.hbs", {
+        precompiled: true
+    });
+    req.listTemp = template;
+	next();
+}
+
+const questTemp = async function (req, res, next) {
+	const template = await hbs.getTemplate( "views/admin/quest.hbs", {
+        precompiled: true
+    });
+    req.questTemp = template;
+	next();
+}
+
+
+
+
+
 
 
 const exposeTemplate = async function (req, res, next) {
@@ -47,8 +77,10 @@ router.get('/', exposeTemplate, async (req, res, next) => {
   });
 })
 
-router.get('/list', function (req, res, next) {
-  res.render('admin/list');
+router.get('/list',listTemp, async function (req, res, next) {
+  const users = await User.find()
+  //console.log(users)
+  res.render('admin/list', {user: users, listTemp: req.listTemp});
 })
 
 router.get('/content', exposeTemplate, async function (req, res, next) {
@@ -90,12 +122,13 @@ const quas = async function (req, res, next) {
 	next();
 }
 
-router.get('/test', quas, createShield ,tests, findTests, function (req, res, next) {
+router.get('/test', quas, createShield ,tests, findTests,questTemp, function (req, res, next) {
   res.render('admin/test', {
     tests : req.tests,
     testsTemplate: req.testsTemplate,
     createShieldTemplate: req.createShieldTemplate,
-    quastionTemplate: req.quastionTemplate
+    quastionTemplate: req.quastionTemplate,
+    questTemplate: req.questTemp
   });
 })
 
@@ -160,8 +193,28 @@ const create = async function(req, res, next){
   next()
 }
 
+router.post("/list", async function (req, res, next){
+  await User.findOneAndUpdate({name: req.body.nameA}, {$set: {name: req.body.name, position: req.body.pos, telephone: req.body.tel}})
+  const users = await User.find()
+  console.log(req.body)
+  res.json({
+    user:users
+  })
+})
+
 router.post("/question", create, function(req, res){
   res.end()
   
 } )
+
+router.post("/test", async function(req,res){
+  await QuastionBox.findOneAndRemove({title: req.body.linkDel})
+   await Quastion.findOneAndRemove({quastionBox: req.body.linkDel})
+  const findQ = await Quastion.find({quastionBox: req.body.link})
+  const findAll = await QuastionBox.find()
+  res.json({
+    quest: findQ,
+    tests: findAll
+  })
+})
 module.exports = router;
