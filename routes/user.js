@@ -26,9 +26,12 @@ router.get("/test/final", find, function(req, res, next){
   })
 })
 
-router.get("/cards", function(req, res, next){
-  res.render("user/cards")
+//-----------------------------
+router.get("/cards", async function(req, res, next){
+  let cardbox = await CardBox.find();
+  res.render("user/userContent", { cardbox })
 })
+//-----------------------------
 
 router.get("/test/train", function(req, res, next){
   res.render("user/testTrain")
