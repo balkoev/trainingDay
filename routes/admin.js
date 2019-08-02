@@ -7,6 +7,7 @@ const Quastion = require("../modules/quastions");
 const QuastionBox = require("../modules/quastionBox")
 const handlebars = require('express-handlebars');
 const path = require('path');
+const Stat = require("../modules/statics");
 
 
 
@@ -128,8 +129,9 @@ router.get('/test', quas, createShield ,tests, findTests,questTemp, function (re
   });
 })
 
-router.get('/stats', function (req, res, next) {
-  res.render('admin/stats');
+router.get('/stats', async function (req, res, next) {
+  let nani = await Stat.find()
+  res.render('admin/stats', {nani : nani});
 })
 // ----------------------------------------
 
