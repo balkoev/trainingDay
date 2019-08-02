@@ -1,19 +1,25 @@
-<h1>
-    Созданные тесты
-</h1>
-<div id= "main">
-    {{>admin/tests}}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h3 class="center">Create test</h3>
+        </div>
+        <div class="col s12" id="main">
+            {{>admin/tests}}
+        </div>
+        </div>
+    </div>
 </div>
- <script>
-    const testsCode = {{{testsTemplate}}};
-	const tests = Handlebars.template(testsCode);
-    </script>
-     <script>
-    const createShieldCode = {{{createShieldTemplate}}};
-	const createShield = Handlebars.template(createShieldCode);
-    </script>
-    <script>
-    const quastionCode = {{{quastionTemplate}}};
-	const quastion = Handlebars.template(quastionCode);
-    </script>
-<script src = "/js/admin/create_test.js"> </script>
+
+<script>
+    const testsCode = {{{ testsTemplate }}};
+    const tests = Handlebars.template(testsCode);
+</script>
+<script>
+    const createShieldCode = {{{ createShieldTemplate }}};
+    const createShield = Handlebars.template(createShieldCode);
+</script>
+<script>
+    const quastionCode = {{{ quastionTemplate }}};
+    const quastion = Handlebars.template(quastionCode);
+</script>
+<script src="/js/admin/create_test.js"> </script>

@@ -9,18 +9,19 @@ const QuastionBox = require("../modules/quastionBox")
 
 
 router.get('/', async (req, res, next) => {
-  res.render('user/indexUser');
+  console.log(req.session.verify);
+  res.render('user/indexUser', { verify: req.session.verify });
 })
 router.get("/test/final", function(req, res, next){
-  res.render("user/testFinal")
+  res.render("user/testFinal", { verify: req.session.verify })
 })
 
 router.get("/cards", function(req, res, next){
-  res.render("user/cards")
+  res.render("user/cards", { verify: req.session.verify })
 })
 
 router.get("/test/train", function(req, res, next){
-  res.render("user/testTrain")
+  res.render("user/testTrain", { verify: req.session.verify })
 })
 
 
