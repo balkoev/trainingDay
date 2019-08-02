@@ -12,6 +12,7 @@ router.get('/', async (req, res, next) => {
   console.log(req.session.verify);
   res.render('user/indexUser', { verify: req.session.verify });
 })
+
 const find = async function(req, res, next){
 
   let user = await User.findOne({telephone:req.session.mobile}, {_id: 0, position:1})
