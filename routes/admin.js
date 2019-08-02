@@ -32,6 +32,14 @@ const listTemp = async function (req, res, next) {
 	next();
 }
 
+const questTemp = async function (req, res, next) {
+	const template = await hbs.getTemplate( "views/admin/quest.hbs", {
+        precompiled: true
+    });
+    req.questTemp = template;
+	next();
+}
+
 
 
 
@@ -114,12 +122,13 @@ const quas = async function (req, res, next) {
 	next();
 }
 
-router.get('/test', quas, createShield ,tests, findTests, function (req, res, next) {
+router.get('/test', quas, createShield ,tests, findTests,questTemp, function (req, res, next) {
   res.render('admin/test', {
     tests : req.tests,
     testsTemplate: req.testsTemplate,
     createShieldTemplate: req.createShieldTemplate,
-    quastionTemplate: req.quastionTemplate
+    quastionTemplate: req.quastionTemplate,
+    questTemplate: req.questTemp
   });
 })
 
@@ -197,4 +206,15 @@ router.post("/question", create, function(req, res){
   res.end()
   
 } )
+
+router.post("/test", async function(req,res){
+  await QuastionBox.findOneAndRemove({title: req.body.linkDel})
+   await Quastion.findOneAndRemove({quastionBox: req.body.linkDel})
+  const findQ = await Quastion.find({quastionBox: req.body.link})
+  const findAll = await QuastionBox.find()
+  res.json({
+    quest: findQ,
+    tests: findAll
+  })
+})
 module.exports = router;

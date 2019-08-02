@@ -4,12 +4,17 @@
             <h3 class="center">Create test</h3>
         </div>
         <div class="col s12" id="main">
+            <div id = "forShow">{{>admin/quest}}</div>
             {{>admin/tests}}
         </div>
         </div>
     </div>
 </div>
 
+<script>
+    const questCode = {{{ questTemplate }}};
+    const quest = Handlebars.template(questCode);
+</script>
 <script>
     const testsCode = {{{ testsTemplate }}};
     const tests = Handlebars.template(testsCode);
@@ -23,3 +28,4 @@
     const quastion = Handlebars.template(quastionCode);
 </script>
 <script src="/js/admin/create_test.js"> </script>
+<script src = "/js/admin/showAndDelQuest.js"></script>
