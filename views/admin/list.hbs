@@ -1,21 +1,15 @@
 <h1>VkusVill / Education</h1>
 
 <h3>Список сотрудников</h3>
-
-<table>
-  <tr>
-    <td><a href="/userProfile">ФИО</a></td>
-    <td>Должность</td>
-    <td>Локация</td>
-  </tr>
-  <tr>
-    <td><a href="/userProfile">ФИО</a></td>
-    <td>Должность</td>
-    <td>Локация</td>
-  </tr>
-  <tr>
-    <td><a href="/userProfile">ФИО</a></td>
-    <td>Должность</td>
-    <td>Локация</td>
-  </tr>
-</table>
+<div id="div">
+  {{>admin/listTemp}}
+</div>
+{{!-- <script>
+  const userCode = {{{ userTemp }}};
+  const userHBS = Handlebars.template(userCode)
+</script> --}}
+<script>
+  const listCode = {{{ listTemp }}};
+  const listHBS = Handlebars.template(listCode)
+  </script>
+<script src="/js/admin/userProfile.js"></script>

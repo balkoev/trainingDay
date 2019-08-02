@@ -9,7 +9,8 @@ const QuastionBox = require("../modules/quastionBox")
 
 
 router.get('/', async (req, res, next) => {
-  res.render('user/indexUser');
+  console.log(req.session.verify);
+  res.render('user/indexUser', { verify: req.session.verify });
 })
 
 const find = async function(req, res, next){
@@ -20,18 +21,27 @@ const find = async function(req, res, next){
   req.test = test
   next()
 }
+
+const findBase = async function(req,res,next){
+  let base = await CardBox.find()
+  req.base = base
+  next()
+}
+
 router.get("/test/final", find, function(req, res, next){
   res.render("user/testFinal", {
     test: req.test
   })
 })
 
-router.get("/cards", function(req, res, next){
-  res.render("user/cards")
+router.get("/cards",findBase, function(req, res, next){
+  console.log(req.base)
+  res.render("user/cards", { verify: req.session.verify ,base: req.base})
 })
 
+
 router.get("/test/train", function(req, res, next){
-  res.render("user/testTrain")
+  res.render("user/testTrain", { verify: req.session.verify })
 })
  router.get("/test/final/:name", async function(req, res){
    let quastionBox = await QuastionBox.findOne({title:req.params.name})

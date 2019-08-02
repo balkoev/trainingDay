@@ -1,0 +1,26 @@
+<div id="action">
+    {{#if userBool}}
+    <form>
+        <div>
+            <span>ФИО</span>
+            <input type="text" value="{{this.name}}" id="nameProf">
+        </div>
+        <span>Должность</span>
+        <input type="text" , value="{{this.position}}" id="posProf">
+        <div>
+            <span>Номер телефона</span>
+            <input type="text" value="{{this.telephone}}" id="telProf">
+        </div>
+        <input type="submit" value="Сохранить" class="edit-button">
+    </form>
+    {{/if}}
+</div>
+{{#each user}}
+<table>
+    <tr>
+        <td><a id= "kaka" href="" class= {{this.name}} >{{this.name}}</a></td>
+        <td class= {{this.name}}>{{this.position}}</td>
+        <td class= {{this.name}}>{{this.telephone}}</td>
+    </tr>
+</table>
+{{/each}}
