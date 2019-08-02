@@ -4,11 +4,9 @@ const CardBox = require("./cardBox");
 const Card = require("./cards");
 const Quastion = require("./quastions");
 const QuastionBox = require("./quastionBox")
+const { mongoConnect } = require('../app');
 
-
-mongoose.connect('mongodb://localhost:27017/supersprint', {
-  useNewUrlParser: true
-});
+mongoConnect;
 
  async function  fill() {
     let user = new User({telephone: "+79037573055", name:"Nikita Kalinnikov", position: "WEB DEVELOPER"})
@@ -24,5 +22,10 @@ mongoose.connect('mongodb://localhost:27017/supersprint', {
     let users = await User.find()
     console.log(users)
 }
+<<<<<<< HEAD
 fill()
+=======
+
+ //fill();
+>>>>>>> master
 

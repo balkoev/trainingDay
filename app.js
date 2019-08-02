@@ -12,6 +12,12 @@ const mongoose = require("mongoose");
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const adminRouter = require('./routes/admin');
+require('dotenv').config();
+
+const dbUser = process.env.MONGO_USERNAME;
+const dbPass = encodeURIComponent(process.env.MONGO_PASSWORD);
+const dbName = process.env.DB_NAME;
+const mongoConnectionString = `mongodb://${dbUser}:${dbPass}@ds359077.mlab.com:59077/${dbName}`;
 
 const app = express();
 
@@ -41,7 +47,8 @@ app.use(session(sessionConfig))
 
 
 // Подключаем mongoose.
-mongoose.connect('mongodb://localhost:27017/supersprint', { useNewUrlParser: true });
+// const mongoConnect = mongoose.connect('mongodb://localhost:27017/supersprint', { useNewUrlParser: true });
+const mongoConnect = mongoose.connect(mongoConnectionString, { useNewUrlParser: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -85,4 +92,4 @@ app.use('/admin', adminRouter);
 //   res.render('error');
 // });
 
-module.exports = app;
+module.exports = { app, mongoConnect };
