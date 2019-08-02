@@ -1,8 +1,19 @@
 const express = require('express');
 const router = express.Router();
-<<<<<<< HEAD
-const Cardbox = require('./../models/cardbox');
-const Card = require('./../models/card');
+const User = require("../modules/users");
+const CardBox = require("../modules/cardBox");
+const Card = require("../modules/cards");
+const Quastion = require("../modules/quastions");
+const QuastionBox = require("../modules/quastionBox")
+const handlebars = require('express-handlebars');
+const path = require('path');
+
+const hbs = handlebars.create({
+  defaultLayout: 'layout',
+  extname: 'hbs',
+  layoutsDir: path.join(__dirname, 'views'),
+  partialsDir: path.join(__dirname, 'views')
+})
 
 
 const exposeTemplate = async function (req, res, next) {
@@ -19,33 +30,13 @@ const exposeTemplate = async function (req, res, next) {
 
 
 // ручки для перехода по основному меню!
-router.get('/', exposeTemplate, (req, res, next) => {
+router.get('/', exposeTemplate, async (req, res, next) => {
   let cardbox = await Card.find();
   res.render('admin/indexAdmin', {
     cardbox,
     template: res.newCardboxTemplate,
     template2: res.newCardsTemplate
   });
-=======
-const User = require("../modules/users");
-const CardBox = require("../modules/cardBox");
-const Card = require("../modules/cards");
-const Quastion = require("../modules/quastions");
-const QuastionBox = require("../modules/quastionBox")
-const handlebars = require('express-handlebars');
-const path = require('path');
-
-const hbs = handlebars.create({
-  defaultLayout: 'layout',
-  extname: 'hbs',
-  layoutsDir: path.join(__dirname, 'views'),
-  partialsDir: path.join(__dirname, 'views')
-})
-
-router.get('/', (req, res, next) => {
-  res.render('admin/indexAdmin');
-
->>>>>>> 4b61851cd49d913f659ffc148813882383d3cb02
 })
 
 router.get('/list', function (req, res, next) {
