@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
+const { mongoConnect } = require('../app');
 
-mongoose.connect('mongodb://localhost:27017/supersprint', {
-  useNewUrlParser: true
-});
-
+mongoConnect;
 
 const quastionBoxSchema = new mongoose.Schema(
   {

@@ -4,11 +4,9 @@ const CardBox = require("./cardBox");
 const Card = require("./cards");
 const Quastion = require("./quastions");
 const QuastionBox = require("./quastionBox")
+const { mongoConnect } = require('../app');
 
-
-mongoose.connect('mongodb://localhost:27017/supersprint', {
-  useNewUrlParser: true
-});
+mongoConnect;
 
  async function  fill() {
 <<<<<<< HEAD
