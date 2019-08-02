@@ -20,6 +20,27 @@
 </div>
 
 
+{{!-- <div id="b">
+  <button class="a">Create</button>
+</div> --}}
+
+<div id="text">
+  {{!-- {{>admin/cardList}} --}}
+
+  <ul>
+    {{#each cards}}
+    <li>
+      <table>
+        <tr>
+          <td>{{this.title}} </td>
+          <td>{{this.content}}</td>
+        </tr>
+      </table>
+
+    </li>
+    {{/each}}
+  </ul>
+</div>
 <script>
   const templateCode3 = {{{ template3 }}};
   const newcardTemplate = Handlebars.template(templateCode3);

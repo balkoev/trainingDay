@@ -1,0 +1,19 @@
+<div>
+    <div> {{qua}} </div> </br>
+    {{#if filter}}
+    Выберите правильные ответы
+    {{#each answer}}
+    <p><label>
+        <input type="checkbox" name="answer" value={{this}}> <span>{{this}} </span></label> </p>
+
+    {{/each}}
+    {{else}}
+    Выберите правильный ответ
+    {{#each answer}}
+    <p> 
+        <label>
+        <input type="radio" name="answer" value={{this}}> <span>{{this}}</span></label> </p>
+    {{/each}}
+    {{/if}}
+</div>
+<input  id = "next" type="submit" value="next">
