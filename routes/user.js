@@ -55,7 +55,8 @@ router.get("/cards",findBase, function(req, res, next){
 
 
 router.get("/test/train", function(req, res, next){
-  res.render("user/testTrain", { verify: req.session.verify })
+  req.session.try = false;
+  res.redirect("user/test/final")
 })
 
 const theTemplate = async function (req, res, next) {
@@ -227,8 +228,10 @@ const createSt = async function (req, res, next) {
   req.body.count += req.counter
   let st = new Stat({ user: req.session.mobile, qb: req.params.name, counter: req.body.count })
   req.st = st
-  
-  await st.save();
+  if(req.session.try){
+    await st.save();
+  }
+  req.session.try = true;
   next()
 }
 
