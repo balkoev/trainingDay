@@ -9,9 +9,9 @@ const QuastionBox = require("../modules/quastionBox")
 
 
 router.get('/', async (req, res, next) => {
-  res.render('user/indexUser');
+  console.log(req.session.verify);
+  res.render('user/indexUser', { verify: req.session.verify });
 })
-
 const find = async function(req, res, next){
 
   let user = await User.findOne({telephone:req.session.mobile}, {_id: 0, position:1})
@@ -27,11 +27,11 @@ router.get("/test/final", find, function(req, res, next){
 })
 
 router.get("/cards", function(req, res, next){
-  res.render("user/cards")
+  res.render("user/cards", { verify: req.session.verify })
 })
 
 router.get("/test/train", function(req, res, next){
-  res.render("user/testTrain")
+  res.render("user/testTrain", { verify: req.session.verify })
 })
  router.get("/test/final/:name", async function(req, res){
    let quastionBox = await QuastionBox.findOne({title:req.params.name})
