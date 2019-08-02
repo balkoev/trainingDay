@@ -47,7 +47,7 @@ app.use(session(sessionConfig))
 
 
 // Подключаем mongoose.
-//const mongoConnect = mongoose.connect('mongodb://localhost:27017/supersprint', { useNewUrlParser: true });
+// const mongoConnect = mongoose.connect('mongodb://localhost:27017/supersprint', { useNewUrlParser: true });
 const mongoConnect = mongoose.connect(mongoConnectionString, { useNewUrlParser: true });
 
 // view engine setup

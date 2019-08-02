@@ -1,7 +1,23 @@
-<h1>
+<h1 id= "testName">
     {{name}}
 </h1>
-<div>
+<div id= "mt"> 
+<div >
     Колличество вопросов: {{length}} 
 </div>
-<input type= "submit" value= "Start">
+<input  id= "start" type= "submit" value= "Start">
+</div>
+<div id= "testSh"></div>
+<script>
+    const theTestCode = {{{ theTest }}};
+    const theTest = Handlebars.template(theTestCode);
+</script>
+<script>
+    const myTestCode = {{{ myTest }}};
+    const myTest = Handlebars.template(myTestCode);
+</script>
+<script>
+    const scoreCode = {{{ score }}};
+    const scoreHBS = Handlebars.template(scoreCode);
+</script>
+<script src = "/js/user/start_test.js"> </script>

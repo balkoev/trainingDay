@@ -7,6 +7,7 @@ const Quastion = require("../modules/quastions");
 const QuastionBox = require("../modules/quastionBox")
 const handlebars = require('express-handlebars');
 const path = require('path');
+const Stat = require("../modules/statics");
 
 
 
@@ -68,12 +69,8 @@ const exposeTemplate = async function (req, res, next) {
 
 
 // ручки для перехода по основному меню!
-router.get('/', exposeTemplate, async (req, res, next) => {
-  let cardbox = await Card.find();
+router.get('/', exposeTemplate, (req, res, next) => {
   res.render('admin/indexAdmin', {
-    cardbox,
-    template: res.newCardboxTemplate,
-    template2: res.newCardsTemplate
   });
 })
 
@@ -132,13 +129,13 @@ router.get('/test', quas, createShield ,tests, findTests,questTemp, function (re
   });
 })
 
-router.get('/stats', function (req, res, next) {
-  res.render('admin/stats');
+router.get('/stats', async function (req, res, next) {
+  let nani = await Stat.find()
+  res.render('admin/stats', {nani : nani});
 })
 // ----------------------------------------
 
 router.post('/createCardbox', async function (req, res, next) {
-  console.log(req.body.title)
   await new CardBox({
     title: req.body.title,
     position: req.body.position
@@ -146,6 +143,17 @@ router.post('/createCardbox', async function (req, res, next) {
   let cardbox = await CardBox.find();
   res.json(cardbox)
 })
+
+router.delete('/:id', async function (req, res, next) {
+  const del = await CardBox.findById(req.params.id);
+  await Card.deleteMany({ cardBox: del.title });
+  await CardBox.findByIdAndRemove(req.params.id);
+  // const del2 = await Card.findOneAndRemove({ category: del.title });
+
+  res.json({
+    deleted: true
+  }); 
+});
 
 router.post('/createCard', async function (req, res, next) {
   await new Card({
@@ -157,9 +165,12 @@ router.post('/createCard', async function (req, res, next) {
   res.json(cards)
 })
 
-router.get('/content/:category', async function (req, res, next) {
+router.get('/content/:category', exposeTemplate, async function (req, res, next) {
   let cards = await Card.find({cardBox : req.params.category });
-  res.render('admin/inCategory', { cards });
+  res.render('admin/inCategory', { 
+    cards,
+    template3: res.newcardTemplate
+   });
 })
 
 

@@ -9,7 +9,7 @@ const { mongoConnect } = require('../app');
 mongoConnect;
 
  async function  fill() {
-    let user = new User({telephone: "89039358484", name:"Nik Kal", position: "WEB DEVELOPER"})
+    let user = new User({telephone: "+79037573055", name:"Nikita Kalinnikov", position: "WEB DEVELOPER"})
     let cardBox = new CardBox({title:"express", position: "WEB DEVELOPER"})
     let card = new Card({title:"Template", content:"Template is a funtion", cardBox: cardBox.title})
     let quastionBox = new QuastionBox({title:"express", position:"WEB DEVELOPER"})
@@ -22,4 +22,5 @@ mongoConnect;
     let users = await User.find()
     console.log(users)
 }
+
  //fill();
