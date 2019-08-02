@@ -1,1 +1,27 @@
-Управление контентом
+<div id="content">
+  <h1>Управление контентом</h1>
+
+  <div id="cards">
+    {{>admin/cardboxList}}
+  </div>
+
+  <div id="container">
+    {{>admin/button}}
+  </div>
+
+  
+</div>
+<script>
+  const templateCode = {{{ template }}};
+  const cardboxTemplate = Handlebars.template(templateCode);
+
+  const templateCode2 = {{{ template2 }}};
+  const cardboxListTemplate = Handlebars.template(templateCode2);
+
+  const templateCode3 = {{{ template3 }}};
+  const newcardTemplate = Handlebars.template(templateCode3);
+
+  const templateCode4 = {{{ template4 }}};
+  const buttonTemplate = Handlebars.template(templateCode4);
+</script>
+<script src="/js/admin/application.js" defer></script>

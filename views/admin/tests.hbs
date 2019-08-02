@@ -1,0 +1,21 @@
+{{#if tests}}
+<p>Придумайте название для вашего теста. Например "Тест - Продавец"</p>
+{{#each tests}}
+<form>
+    <div class="row">
+        <div class="col s6">
+            <div class="collection">
+                <a href="#!" class="collection-item">{{this.title}}</a>
+            </div>
+        </div>
+
+        <div class="col s6"> 
+            <input class="blue btn" value="Show" type="submit">
+            <input class="green btn" value="Edit" type="submit">
+            <input class="red btn" value="Delete" type="submit">
+        </div>
+    </div>
+</form>
+{{/each}}
+{{/if}}
+<input class="blue btn" id="createNew" value="Create new" type="submit">
