@@ -24,5 +24,5 @@ mongoose.connect('mongodb://localhost:27017/supersprint', {
     let users = await User.find()
     console.log(users)
 }
-// fill()
+fill()
 
