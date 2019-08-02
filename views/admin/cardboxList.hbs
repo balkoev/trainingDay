@@ -1,9 +1,10 @@
 <ul id="ul" class="list">
   {{#each cardbox}}
-  <li>
-    <a class="" href="/admin/content/{{this.title}}">{{this.title}}</a>
+  <li id='{{this._id}}'>
+    <a  class="" href="/admin/content/{{this.title}}">{{this.title}}</a>
 
-      <button data-id='{{this.title}}'class="fooh">Create</button>
+      <button data-id='{{this.title}}'class="fooh">Create card</button>
+      <button data-id='{{this._id}}'class="delete">Delete</button>
   
   </li>
   {{/each}}

@@ -39,6 +39,7 @@ router.get("/cards",findBase, function(req, res, next){
   res.render("user/cards", { verify: req.session.verify ,base: req.base})
 })
 
+
 router.get("/test/train", function(req, res, next){
   res.render("user/testTrain", { verify: req.session.verify })
 })
