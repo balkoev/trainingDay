@@ -1,4 +1,12 @@
 {{#each quest}}
-<li>Вопрос: {{this.title}}</li>
-<p>Ответы: {{this.answer}}</p>
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card green">
+        <div class="card-content white-text">
+          <span class="card-title">Вопрос: {{this.title}}</span>
+          <p>Ответы: {{this.answer}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 {{/each}}

@@ -4,15 +4,14 @@
 <form>
     <div class="row">
         <div class="col s6">
-            <div class="collection">
-                <a href="#!" class="collection-item" id="">{{this.title}}</a>
-            </div>
+            <ul class="collection">
+                <li class="collection-item">{{this.title}}</li>
+            </ul>
         </div>
 
         <div class="col s6">
-            <input class="blue btn" value="Show" type="submit" id = "btn-show" data-id = '{{this.title}}'>
-            <input class="green btn" value="Edit" type="submit">
-            <input class="red btn" value="Delete" type="submit" id = "btn-del" data-id = '{{this.title}}'>
+            <input class="green btn" value="Show" type="submit" id="btn-show" data-id='{{this.title}}'>
+            <input class="red btn" value="Delete" type="submit" id="btn-del" data-id='{{this.title}}'>
         </div>
     </div>
 </form>

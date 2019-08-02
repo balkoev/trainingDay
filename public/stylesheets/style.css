@@ -5,3 +5,7 @@
 .sms { 
   visibility: hidden; 
 }
+
+.row .col.s6:not(:first-child) {
+  margin-top: .5em;
+}
