@@ -22,10 +22,6 @@ mongoConnect;
     let users = await User.find()
     console.log(users)
 }
-<<<<<<< HEAD
-fill()
-=======
 
  //fill();
->>>>>>> master
 

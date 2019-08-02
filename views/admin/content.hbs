@@ -1,16 +1,22 @@
-<div id="content">
-  <h1>Управление контентом</h1>
-
-  <div id="cards">
-    {{>admin/cardboxList}}
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h3 class="center">Управление контентом</h3>
+    </div>
+    <div class="col s12">
+      <div id="cards">
+        {{>admin/cardboxList}}
+      </div>
+    </div>
+    <div class="col s12">
+      <div id="container">
+        {{>admin/button}}
+      </div>
+    </div>
   </div>
-
-  <div id="container">
-    {{>admin/button}}
-  </div>
-
-  
 </div>
+</div>
+
 <script>
   const templateCode = {{{ template }}};
   const cardboxTemplate = Handlebars.template(templateCode);
