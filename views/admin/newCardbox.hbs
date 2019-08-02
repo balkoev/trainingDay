@@ -1,4 +1,8 @@
-<form id="new-cardbox-form" class="" method="post" action="/content">
+<form id="new-cardbox-form" class="" method="POST" action="/admin/createCardbox">
+
+  {{!-- <div id="cards">
+    {{>admin/cardboxList}}
+  </div> --}}
 
   <span>Title:</span>
   <input id="cardbox-title" class="" type="text" name="title" value="">
@@ -6,5 +10,6 @@
   <span>Position:</span>
   <input id="user-position" class="" type="text" name="position" value="">
 
-  <button id="foo" type="submit" class="button">Create</button>
+  <button class="foo" type="submit">Create</button>
+
 </form>
