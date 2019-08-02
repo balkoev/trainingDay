@@ -7,7 +7,8 @@ mongoose.connect('mongodb://localhost:27017/supersprint', {
 
 const quastionBoxSchema = new mongoose.Schema(
   {
-   title: String,           // название  теста
+   title: String,
+   position:String           // название  теста
   }
 );
 const QuastionBox = mongoose.model('quastionBoxes', quastionBoxSchema);

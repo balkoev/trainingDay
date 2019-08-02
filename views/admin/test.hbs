@@ -1,1 +1,19 @@
-Управление тестированием
+<h1>
+    Созданные тесты
+</h1>
+<div id= "main">
+    {{>admin/tests}}
+</div>
+ <script>
+    const testsCode = {{{testsTemplate}}};
+	const tests = Handlebars.template(testsCode);
+    </script>
+     <script>
+    const createShieldCode = {{{createShieldTemplate}}};
+	const createShield = Handlebars.template(createShieldCode);
+    </script>
+    <script>
+    const quastionCode = {{{quastionTemplate}}};
+	const quastion = Handlebars.template(quastionCode);
+    </script>
+<script src = "/js/admin/create_test.js"> </script>
