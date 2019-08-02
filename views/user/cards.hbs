@@ -1,3 +1,13 @@
 <div>
     База знаний
 </div>
+<div id = "user_base">
+    <table>
+        {{#each base}}
+        <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.position}}</td>
+        </tr>
+    {{/each}}
+    </table>
+</div>
