@@ -8,12 +8,42 @@ const QuastionBox = require("../modules/quastionBox")
 const handlebars = require('express-handlebars');
 const path = require('path');
 
-const hbs = handlebars.create({
-  defaultLayout: 'layout',
-  extname: 'hbs',
-  layoutsDir: path.join(__dirname, 'views'),
-  partialsDir: path.join(__dirname, 'views')
-})
+
+
+const hbs = handlebars.create( {
+	defaultLayout: 'layout',
+    extname: 'hbs',
+    layoutsDir: path.join(__dirname, 'views'),
+    partialsDir: path.join(__dirname, 'views')
+});
+
+// const userProfile = async function (req, res, next) {
+// 	const template = await hbs.getTemplate( "views/admin/userProfile.hbs", {
+//         precompiled: true
+//     });
+//     req.userTemp = template;
+// 	next();
+// }
+const listTemp = async function (req, res, next) {
+	const template = await hbs.getTemplate( "views/admin/listTemp.hbs", {
+        precompiled: true
+    });
+    req.listTemp = template;
+	next();
+}
+
+const questTemp = async function (req, res, next) {
+	const template = await hbs.getTemplate( "views/admin/quest.hbs", {
+        precompiled: true
+    });
+    req.questTemp = template;
+	next();
+}
+
+
+
+
+
 
 
 const exposeTemplate = async function (req, res, next) {
@@ -38,17 +68,15 @@ const exposeTemplate = async function (req, res, next) {
 
 
 // ручки для перехода по основному меню!
-router.get('/', exposeTemplate, async (req, res, next) => {
-  let cardbox = await Card.find();
+router.get('/', exposeTemplate, (req, res, next) => {
   res.render('admin/indexAdmin', {
-    cardbox,
-    template: res.newCardboxTemplate,
-    template2: res.newCardsTemplate
   });
 })
 
-router.get('/list', function (req, res, next) {
-  res.render('admin/list');
+router.get('/list',listTemp, async function (req, res, next) {
+  const users = await User.find()
+  //console.log(users)
+  res.render('admin/list', {user: users, listTemp: req.listTemp});
 })
 
 router.get('/content', exposeTemplate, async function (req, res, next) {
@@ -90,12 +118,13 @@ const quas = async function (req, res, next) {
 	next();
 }
 
-router.get('/test', quas, createShield ,tests, findTests, function (req, res, next) {
+router.get('/test', quas, createShield ,tests, findTests,questTemp, function (req, res, next) {
   res.render('admin/test', {
     tests : req.tests,
     testsTemplate: req.testsTemplate,
     createShieldTemplate: req.createShieldTemplate,
-    quastionTemplate: req.quastionTemplate
+    quastionTemplate: req.quastionTemplate,
+    questTemplate: req.questTemp
   });
 })
 
@@ -105,7 +134,6 @@ router.get('/stats', function (req, res, next) {
 // ----------------------------------------
 
 router.post('/createCardbox', async function (req, res, next) {
-  console.log(req.body.title)
   await new CardBox({
     title: req.body.title,
     position: req.body.position
@@ -113,6 +141,17 @@ router.post('/createCardbox', async function (req, res, next) {
   let cardbox = await CardBox.find();
   res.json(cardbox)
 })
+
+router.delete('/:id', async function (req, res, next) {
+  const del = await CardBox.findById(req.params.id);
+  await Card.deleteMany({ cardBox: del.title });
+  await CardBox.findByIdAndRemove(req.params.id);
+  // const del2 = await Card.findOneAndRemove({ category: del.title });
+
+  res.json({
+    deleted: true
+  }); 
+});
 
 router.post('/createCard', async function (req, res, next) {
   await new Card({
@@ -124,9 +163,12 @@ router.post('/createCard', async function (req, res, next) {
   res.json(cards)
 })
 
-router.get('/content/:category', async function (req, res, next) {
+router.get('/content/:category', exposeTemplate, async function (req, res, next) {
   let cards = await Card.find({cardBox : req.params.category });
-  res.render('admin/inCategory', { cards });
+  res.render('admin/inCategory', { 
+    cards,
+    template3: res.newcardTemplate
+   });
 })
 
 
@@ -160,8 +202,28 @@ const create = async function(req, res, next){
   next()
 }
 
+router.post("/list", async function (req, res, next){
+  await User.findOneAndUpdate({name: req.body.nameA}, {$set: {name: req.body.name, position: req.body.pos, telephone: req.body.tel}})
+  const users = await User.find()
+  console.log(req.body)
+  res.json({
+    user:users
+  })
+})
+
 router.post("/question", create, function(req, res){
   res.end()
   
 } )
+
+router.post("/test", async function(req,res){
+  await QuastionBox.findOneAndRemove({title: req.body.linkDel})
+   await Quastion.findOneAndRemove({quastionBox: req.body.linkDel})
+  const findQ = await Quastion.find({quastionBox: req.body.link})
+  const findAll = await QuastionBox.find()
+  res.json({
+    quest: findQ,
+    tests: findAll
+  })
+})
 module.exports = router;
