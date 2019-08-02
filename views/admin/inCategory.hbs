@@ -1,13 +1,26 @@
-<h1>Категория</h1>
-
-<div id="text">
-  {{!-- {{>admin/cardList}} --}}
-
-  <ul>
-    {{#each cards}}
-  <li>
-    <a class="" href="/admin/content/{{this.title}}">{{this.title}}</a>
-  </li>
-  {{/each}}
-  </ul>
+<div class="container">
+<div class="row">
+  <div class="col s12">
+    <h3 class="center">Категория</h3>
+  </div>
+  {{#each cards}}
+  <div class="col s4">
+    <div class="card">
+      <div class="card-image">
+        <img src="http://ulan_ude.fastfood4u.ru/files/1/delivery-foto/mcdonalds-dostavka.png">
+        <span class="card-title">{{this.title}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{this.content}}</p>
+      </div>
+    </div>
+  </div>
+      {{/each}}
 </div>
+</div>
+
+
+<script>
+  const templateCode3 = {{{ template3 }}};
+  const newcardTemplate = Handlebars.template(templateCode3);
+</script>
